@@ -1,0 +1,658 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOODIESHOP.CASA - Premium Streetwear Hoodies</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&display=swap');
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .hero-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1527719327859-c6ce80353573?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .instagram-feed {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .size-chart {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+        
+        .discount-popup {
+            animation: slideDown 0.5s ease-out;
+        }
+
+        .custom-design-img {
+            transition: transform 0.3s ease;
+        }
+
+        .custom-design-img:hover {
+            transform: scale(1.02);
+        }
+        
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <!-- Discount Popup -->
+    <div class="discount-popup bg-orange-500 text-white text-center py-2 px-4 sticky top-0 z-50">
+        <p class="font-bold">🔥 LIMITED TIME OFFER: 15% OFF YOUR FIRST ORDER! USE CODE: <span class="underline">HOODIE15</span></p>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="bg-black text-white py-4 px-6 sticky top-0 z-40 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold">
+                <span class="text-white">HOODIE</span><span class="text-orange-500">SHOP</span><span class="text-white">.CASA</span>
+            </a>
+            
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="#home" class="hover:text-orange-500 transition">Home</a>
+                <a href="#shop" class="hover:text-orange-500 transition">Shop</a>
+                <a href="#about" class="hover:text-orange-500 transition">About</a>
+                <a href="#contact" class="hover:text-orange-500 transition">Contact</a>
+                <a href="https://discord.gg/jnHEW943Vz" target="_blank" class="hover:text-orange-500 transition">Discord</a>
+                <a href="https://www.instagram.com/hoodieshop.casa/" target="_blank" class="text-orange-500 hover:text-white transition">
+                    <i class="fab fa-instagram text-xl"></i>
+                </a>
+                <a href="#" class="relative">
+                    <i class="fas fa-shopping-cart text-xl"></i>
+                    <span class="absolute -top-2 -right-2 bg-orange-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span>
+                </a>
+            </div>
+            
+            <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-black py-4 px-6 absolute w-full left-0 z-50">
+            <a href="#home" class="block py-2 hover:text-orange-500 transition">Home</a>
+            <a href="#shop" class="block py-2 hover:text-orange-500 transition">Shop</a>
+            <a href="#about" class="block py-2 hover:text-orange-500 transition">About</a>
+            <a href="#contact" class="block py-2 hover:text-orange-500 transition">Contact</a>
+            <a href="https://discord.gg/jnHEW943Vz" target="_blank" class="block py-2 hover:text-orange-500 transition">Discord</a>
+            <div class="flex space-x-4 pt-2">
+                <a href="https://www.instagram.com/hoodieshop.casa/" target="_blank" class="text-orange-500 hover:text-white transition">
+                    <i class="fab fa-instagram text-xl"></i>
+                </a>
+                <a href="#" class="relative">
+                    <i class="fas fa-shopping-cart text-xl"></i>
+                    <span class="absolute -top-2 -right-2 bg-orange-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg text-white py-20 md:py-32 px-6">
+        <div class="container mx-auto flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-10 md:mb-0">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4">PREMIUM STREETWEAR HOODIES</h1>
+                <p class="text-xl mb-8">Urban style meets ultimate comfort. Limited edition designs that stand out.</p>
+                <a href="#shop" class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-8 rounded-full transition duration-300 inline-block">
+                    SHOP NOW
+                </a>
+            </div>
+            <div class="md:w-1/2 flex justify-center">
+                <img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1372&q=80" 
+                     alt="Featured Hoodie" class="rounded-lg shadow-2xl max-w-md w-full">
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Collections -->
+    <section class="py-16 px-6 bg-white">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">OUR COLLECTIONS</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- New Arrivals -->
+                <div class="bg-gray-100 rounded-lg overflow-hidden shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=736&q=80" 
+                         alt="New Arrivals" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">NEW ARRIVALS</h3>
+                        <p class="text-gray-600 mb-4">Fresh designs just dropped. Limited quantities available.</p>
+                        <a href="#shop" class="text-orange-500 font-semibold hover:underline">Shop Now →</a>
+                    </div>
+                </div>
+                
+                <!-- Best Sellers -->
+                <div class="bg-gray-100 rounded-lg overflow-hidden shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=776&q=80" 
+                         alt="Best Sellers" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">BEST SELLERS</h3>
+                        <p class="text-gray-600 mb-4">Our most popular hoodies loved by thousands.</p>
+                        <a href="#shop" class="text-orange-500 font-semibold hover:underline">Shop Now →</a>
+                    </div>
+                </div>
+                
+                <!-- Coming Soon -->
+                <div class="bg-gray-100 rounded-lg overflow-hidden shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=764&q=80" 
+                         alt="Coming Soon" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">COMING SOON</h3>
+                        <p class="text-gray-600 mb-4">Be the first to know about our next drop.</p>
+                        <button class="bg-black text-white py-2 px-4 rounded-full hover:bg-gray-800 transition">Notify Me</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shop Section -->
+    <section id="shop" class="py-16 px-6 bg-gray-100">
+        <div class="container mx-auto">
+            <div class="mb-12">
+                <h2 class="text-3xl font-bold mb-4">HOODIES</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                    <!-- Hoodie 1 -->
+                    <div class="product-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1372&q=80" 
+                                 alt="Urban Classic Hoodie" class="w-full h-64 object-cover">
+                            <div class="absolute top-2 right-2 bg-orange-500 text-white text-xs font-bold px-2 py-1 rounded">NEW</div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-lg mb-1">Urban Classic Hoodie</h3>
+                            <p class="text-gray-600 text-sm mb-2">Black / Oversized Fit</p>
+                            <div class="flex justify-between items-center">
+                                <span class="font-bold text-lg">140DHS</span>
+                                <button class="bg-black text-white px-3 py-1 rounded-full text-sm hover:bg-gray-800 transition">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Hoodie 2 -->
+                    <div class="product-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=776&q=80" 
+                                 alt="Street King Hoodie" class="w-full h-64 object-cover">
+                            <div class="absolute top-2 right-2 bg-black text-white text-xs font-bold px-2 py-1 rounded">BESTSELLER</div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-lg mb-1">Street King Hoodie</h3>
+                            <p class="text-gray-600 text-sm mb-2">White / Regular Fit</p>
+                            <div class="flex justify-between items-center">
+                                <span class="font-bold text-lg">160DHS</span>
+                                <button class="bg-black text-white px-3 py-1 rounded-full text-sm hover:bg-gray-800 transition">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Hoodie 3 -->
+                    <div class="product-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
+                        <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=736&q=80" 
+                             alt="Graffiti Art Hoodie" class="w-full h-64 object-cover">
+                        <div class="p-4">
+                            <h3 class="font-bold text-lg mb-1">Graffiti Art Hoodie</h3>
+                            <p class="text-gray-600 text-sm mb-2">Black / Graphic Print</p>
+                            <div class="flex justify-between items-center">
+                                <span class="font-bold text-lg">150DHS</span>
+                                <button class="bg-black text-white px-3 py-1 rounded-full text-sm hover:bg-gray-800 transition">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Hoodie 4 -->
+                    <div class="product-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
+                        <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=764&q=80" 
+                             alt="Minimalist Hoodie" class="w-full h-64 object-cover">
+                        <div class="p-4">
+                            <h3 class="font-bold text-lg mb-1">Minimalist Hoodie</h3>
+                            <p class="text-gray-600 text-sm mb-2">Gray / Slim Fit</p>
+                            <div class="flex justify-between items-center">
+                                <span class="font-bold text-lg">130DHS</span>
+                                <button class="bg-black text-white px-3 py-1 rounded-full text-sm hover:bg-gray-800 transition">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-12">
+                <h2 class="text-3xl font-bold mb-4">SHIRTS</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                    <!-- Shirt 1 -->
+                    <div class="product-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
+                        <img src="https://images.unsplash.com/photo-1583743814966-b89333a89b5b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" 
+                             alt="Urban Classic Shirt" class="w-full h-64 object-cover">
+                        <div class="p-4">
+                            <h3 class="font-bold text-lg mb-1">Urban Classic Shirt</h3>
+                            <p class="text-gray-600 text-sm mb-2">White / Regular Fit</p>
+                            <div class="flex justify-between items-center">
+                                <span class="font-bold text-lg">140DHS</span>
+                                <button class="bg-black text-white px-3 py-1 rounded-full text-sm hover:bg-gray-800 transition">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Shirt 2 -->
+                    <div class="product-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
+                        <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80" 
+                             alt="Street King Shirt" class="w-full h-64 object-cover">
+                        <div class="p-4">
+                            <h3 class="font-bold text-lg mb-1">Street King Shirt</h3>
+                            <p class="text-gray-600 text-sm mb-2">Black / Graphic Print</p>
+                            <div class="flex justify-between items-center">
+                                <span class="font-bold text-lg">150DHS</span>
+                                <button class="bg-black text-white px-3 py-1 rounded-full text-sm hover:bg-gray-800 transition">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Shirt 3 -->
+                    <div class="product-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
+                        <img src="https://images.unsplash.com/photo-1522771930-78848d8a4c9b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80" 
+                             alt="Casual Tee" class="w-full h-64 object-cover">
+                        <div class="p-4">
+                            <h3 class="font-bold text-lg mb-1">Casual Tee</h3>
+                            <p class="text-gray-600 text-sm mb-2">Navy / Slim Fit</p>
+                            <div class="flex justify-between items-center">
+                                <span class="font-bold text-lg">120DHS</span>
+                                <button class="bg-black text-white px-3 py-1 rounded-full text-sm hover:bg-gray-800 transition">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Shirt 4 -->
+                    <div class="product-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
+                        <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=764&q=80" 
+                             alt="Oversized Shirt" class="w-full h-64 object-cover">
+                        <div class="p-4">
+                            <h3 class="font-bold text-lg mb-1">Oversized Shirt</h3>
+                            <p class="text-gray-600 text-sm mb-2">Gray / Oversized Fit</p>
+                            <div class="flex justify-between items-center">
+                                <span class="font-bold text-lg">160DHS</span>
+                                <button class="bg-black text-white px-3 py-1 rounded-full text-sm hover:bg-gray-800 transition">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Custom Design Section -->
+            <div class="mt-12">
+                <h2 class="text-3xl font-bold mb-4">CUSTOM DESIGN</h2>
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg p-8 text-center max-w-3xl mx-auto">
+                    <h3 class="text-2xl font-bold mb-4">Want Something Unique?</h3>
+                    <p class="mb-6">We offer custom hoodie designs for those who want something truly one-of-a-kind. Our custom orders require direct 1-on-1 consultation to ensure your vision becomes reality.</p>
+                    <div class="mb-8">
+                        <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Custom Design Hoodie" class="w-full h-64 object-cover rounded-lg mx-auto">
+                    </div>
+                    <a href="https://discord.gg/jnHEW943Vz" target="_blank" class="bg-black hover:bg-gray-800 text-white font-bold py-3 px-8 rounded-full transition duration-300 inline-block">
+                        CONTACT US ON DISCORD
+                    </a>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <button class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-8 rounded-full transition duration-300 inline-block">
+                    VIEW ALL PRODUCTS
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instagram Feed -->
+    <section class="py-16 px-6 bg-white">
+        <div class="container mx-auto">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-3xl font-bold">FOLLOW US ON INSTAGRAM</h2>
+                <a href="https://www.instagram.com/hoodieshop.casa/" target="_blank" class="text-orange-500 font-semibold hover:underline">@hoodieshop.casa</a>
+            </div>
+            
+            <div class="instagram-feed">
+                <img src="https://www.instagram.com/p/DHmGM9VABp_/" 
+                     alt="Instagram Post" class="w-full h-40 object-cover rounded">
+                <img src="https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=776&q=80" 
+                     alt="Instagram Post" class="w-full h-40 object-cover rounded">
+                <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=736&q=80" 
+                     alt="Instagram Post" class="w-full h-40 object-cover rounded">
+                <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=764&q=80" 
+                     alt="Instagram Post" class="w-full h-40 object-cover rounded">
+                <img src="https://images.unsplash.com/photo-1527719327859-c6ce80353573?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                     alt="Instagram Post" class="w-full h-40 object-cover rounded">
+                <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=736&q=80" 
+                     alt="Instagram Post" class="w-full h-40 object-cover rounded">
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 px-6 bg-black text-white">
+        <div class="container mx-auto">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
+                    <h2 class="text-3xl font-bold mb-6">OUR STORY</h2>
+                    <p class="mb-4">Founded in 2023, HOODIESHOP.CASA was born from a passion for streetwear culture and the need for premium quality hoodies that stand out from the crowd.</p>
+                    <p class="mb-4">We believe in creating pieces that blend comfort, style, and individuality. Each hoodie is designed with attention to detail and made from the finest materials.</p>
+                    <p>Our mission is to empower self-expression through fashion while maintaining ethical production standards.</p>
+                </div>
+                <div class="md:w-1/2">
+                    <img src="https://images.unsplash.com/photo-1527719327859-c6ce80353573?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="Our Team" class="rounded-lg shadow-2xl w-full">
+                </div>
+            </div>
+            
+            <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="bg-orange-500 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-tshirt text-2xl text-white"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-2">Premium Quality</h3>
+                    <p class="text-gray-300">Only the finest materials and craftsmanship for long-lasting comfort.</p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-orange-500 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-palette text-2xl text-white"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-2">Unique Designs</h3>
+                    <p class="text-gray-300">Limited edition prints you won't find anywhere else.</p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-orange-500 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-truck text-2xl text-white"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-2">Fast Shipping</h3>
+                    <p class="text-gray-300">Orders shipped within 24 hours with worldwide delivery.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="py-16 px-6 bg-orange-500 text-white">
+        <div class="container mx-auto text-center max-w-2xl">
+            <h2 class="text-3xl font-bold mb-4">GET 10% OFF YOUR FIRST ORDER</h2>
+            <p class="mb-6">Subscribe to our newsletter and be the first to know about new drops and exclusive offers.</p>
+            <form class="flex flex-col sm:flex-row gap-2">
+                <input type="email" placeholder="Your email address" class="flex-grow px-4 py-3 rounded-full focus:outline-none text-black">
+                <button type="submit" class="bg-black text-white px-6 py-3 rounded-full font-bold hover:bg-gray-800 transition">SUBSCRIBE</button>
+            </form>
+            <p class="text-sm mt-2">We respect your privacy. Unsubscribe at any time.</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 px-6 bg-white">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">CONTACT US</h2>
+            
+            <div class="flex flex-col md:flex-row gap-10">
+                <div class="md:w-1/2">
+                    <h3 class="text-xl font-bold mb-4">GET IN TOUCH</h3>
+                    <p class="mb-6">Have questions about our products or need help with an order? Reach out to us!</p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <i class="fas fa-envelope text-orange-500 mt-1 mr-3"></i>
+                            <div>
+                                <h4 class="font-bold">Email</h4>
+                                <p>Hoodieshopcasapro@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fab fa-whatsapp text-orange-500 mt-1 mr-3"></i>
+                            <div>
+                                <h4 class="font-bold">WhatsApp</h4>
+                                <p>+212703182618</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fab fa-instagram text-orange-500 mt-1 mr-3"></i>
+                            <div>
+                                <h4 class="font-bold">Instagram</h4>
+                                <p>@hoodieshop.casa</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2">
+                    <h3 class="text-xl font-bold mb-4">FAQ</h3>
+                    
+                    <div class="space-y-4">
+                        <div class="border-b border-gray-200 pb-4">
+                            <button class="faq-toggle flex justify-between items-center w-full text-left font-bold">
+                                What's your return policy?
+                                <i class="fas fa-chevron-down transition-transform"></i>
+                            </button>
+                            <div class="faq-content hidden mt-2">
+                                <p>We accept returns within 30 days of purchase. Items must be unworn and in original condition with tags attached.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="border-b border-gray-200 pb-4">
+                            <button class="faq-toggle flex justify-between items-center w-full text-left font-bold">
+                                How long does shipping take?
+                                <i class="fas fa-chevron-down transition-transform"></i>
+                            </button>
+                            <div class="faq-content hidden mt-2">
+                                <p>Domestic orders typically arrive within 3-5 business days. International shipping takes 7-14 business days depending on destination.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="border-b border-gray-200 pb-4">
+                            <button class="faq-toggle flex justify-between items-center w-full text-left font-bold">
+                                What sizes do you offer?
+                                <i class="fas fa-chevron-down transition-transform"></i>
+                            </button>
+                            <div class="faq-content hidden mt-2">
+                                <p>We carry sizes XS to XXL. Check our <button class="text-orange-500 underline" onclick="openSizeChart()">size chart</button> for detailed measurements.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Size Chart Modal -->
+    <div id="size-chart" class="size-chart">
+        <div class="container mx-auto bg-white p-8 rounded-lg max-w-4xl my-10 relative">
+            <button onclick="closeSizeChart()" class="absolute top-4 right-4 text-gray-500 hover:text-black">
+                <i class="fas fa-times text-2xl"></i>
+            </button>
+            
+            <h2 class="text-2xl font-bold mb-6">SIZE CHART</h2>
+            
+            <div class="overflow-x-auto">
+                <table class="w-full text-center">
+                    <thead class="bg-black text-white">
+                        <tr>
+                            <th class="py-3 px-4">Size</th>
+                            <th class="py-3 px-4">Chest (in)</th>
+                            <th class="py-3 px-4">Length (in)</th>
+                            <th class="py-3 px-4">Sleeve (in)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b">
+                            <td class="py-3 px-4">XS</td>
+                            <td class="py-3 px-4">34-36</td>
+                            <td class="py-3 px-4">25</td>
+                            <td class="py-3 px-4">24.5</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="py-3 px-4">S</td>
+                            <td class="py-3 px-4">36-38</td>
+                            <td class="py-3 px-4">26</td>
+                            <td class="py-3 px-4">25.5</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="py-3 px-4">M</td>
+                            <td class="py-3 px-4">38-40</td>
+                            <td class="py-3 px-4">27</td>
+                            <td class="py-3 px-4">26.5</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="py-3 px-4">L</td>
+                            <td class="py-3 px-4">40-42</td>
+                            <td class="py-3 px-4">28</td>
+                            <td class="py-3 px-4">27.5</td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 px-4">XL</td>
+                            <td class="py-3 px-4">42-44</td>
+                            <td class="py-3 px-4">29</td>
+                            <td class="py-3 px-4">28.5</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="mt-8">
+                <h3 class="font-bold mb-2">HOW TO MEASURE</h3>
+                <p class="mb-4">For best fit, measure your body as follows:</p>
+                <ul class="list-disc pl-5 space-y-2">
+                    <li><strong>Chest:</strong> Measure around the fullest part of your chest, keeping the tape measure horizontal.</li>
+                    <li><strong>Length:</strong> Measure from the highest point of your shoulder to the bottom hem.</li>
+                    <li><strong>Sleeve:</strong> Measure from the center back of your neck, over your shoulder, and down to your wrist.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-12 px-6">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">
+                        <span class="text-white">HOODIE</span><span class="text-orange-500">SHOP</span><span class="text-white">.CASA</span>
+                    </h3>
+                    <p class="mb-4">Premium streetwear hoodies for those who dare to stand out.</p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.instagram.com/hoodieshop.casa/" target="_blank" class="text-white hover:text-orange-500 transition">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="text-white hover:text-orange-500 transition">
+                            <i class="fab fa-tiktok text-xl"></i>
+                        </a>
+                        <a href="#" class="text-white hover:text-orange-500 transition">
+                            <i class="fab fa-facebook text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">SHOP</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-orange-500 transition">All Hoodies</a></li>
+                        <li><a href="#" class="hover:text-orange-500 transition">New Arrivals</a></li>
+                        <li><a href="#" class="hover:text-orange-500 transition">Best Sellers</a></li>
+                        <li><a href="#" class="hover:text-orange-500 transition">Coming Soon</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">HELP</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-orange-500 transition">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-orange-500 transition">FAQs</a></li>
+                        <li><a href="#" class="hover:text-orange-500 transition">Shipping & Returns</a></li>
+                        <li><a href="#" class="hover:text-orange-500 transition">Size Guide</a></li>
+                        <li><a href="https://discord.gg/jnHEW943Vz" target="_blank" class="hover:text-orange-500 transition">Join Our Discord</a></li>
+                        <li><a href="https://www.sendit.ma/" target="_blank" class="hover:text-orange-500 transition">Our Delivery Partner</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">LEGAL</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-orange-500 transition">Terms of Service</a></li>
+                        <li><a href="#" class="hover:text-orange-500 transition">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-orange-500 transition">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>© 2023 HOODIESHOP.CASA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/212703182618" target="_blank" class="fixed bottom-6 right-6 bg-green-500 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:bg-green-600 transition">
+        <i class="fab fa-whatsapp text-2xl"></i>
+    </a>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // FAQ Toggle
+        const faqToggles = document.querySelectorAll('.faq-toggle');
+        
+        faqToggles.forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const content = toggle.nextElementSibling;
+                const icon = toggle.querySelector('i');
+                
+                content.classList.toggle('hidden');
+                icon.classList.toggle('rotate-180');
+            });
+        });
+        
+        // Size Chart Functions
+        function openSizeChart() {
+            document.getElementById('size-chart').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeSizeChart() {
+            document.getElementById('size-chart').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Exit Intent Popup - Disabled
+        // document.addEventListener('mouseout', (e) => {
+        //     if (!e.relatedTarget && !e.toElement) {
+        //         setTimeout(() => {
+        //             alert("Wait! Get 10% off your first order with code HOODIE10");
+        //         }, 500);
+        //     }
+        // });
+    </script>
+</body>
+</html>
